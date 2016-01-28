@@ -63,20 +63,7 @@ router.use(function(req, res, next) {
 });
 
 // serve the API cheat sheet
-router.get("/", function(req, res) {
-  var options = {
-    root: __dirname + "/dist/"
-  };
 
-  res.sendFile("index.html", options, function(err) {
-    if (err) {
-      console.log(err);
-      res.status(err.status).end();
-    } else {
-      console.log("Served Client!!!");
-    }
-  });
-});
 
 // ROUTES GO HERE
 
@@ -426,7 +413,20 @@ router.route("/api/v1/users")
     });
   });
 
+router.get("/*", function(req, res) {
+  var options = {
+    root: __dirname + "/dist/"
+  };
 
+  res.sendFile("index.html", options, function(err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    } else {
+      console.log("Served Client!!!");
+    }
+  });
+});
 
 
 // register the routes
